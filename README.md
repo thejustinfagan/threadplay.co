@@ -1,38 +1,42 @@
-# ThreadPlay
+# ThreadPlay.co
 
-Website for threadplay.co - Fleet Battle Dinghy and autonomous simulation experiences.
+Public website for **ThreadPlay**, the first native timeline gaming ecosystem.
 
-## Stack
+ThreadPlay games are designed to be:
 
-- Next.js 15
-- TypeScript
-- Tailwind CSS
+- **Passive** — play over minutes, hours, or days.
+- **Complementary** — add play to the timeline rather than pulling people away.
+- **Frictionless** — challenge with a mention and move with a reply.
 
-## Development
+## Ecosystem
+
+Battle Dinghy, Battle Chess Arena, ThreadChess, ThreadBookie, Baseball Stars, The Straits, Connect 4, Checkers, Chinese Checkers, and future partner-built timeline-native games.
+
+## Architecture
+
+This is a dependency-free static website served by Nginx in a small Docker container.
+
+- `index.html` — complete public website
+- `Dockerfile` — production container
+- `nginx.conf` — static hosting, SPA fallback, gzip, and health endpoint
+- `railway.json` / `railway.toml` — Railway deployment configuration
+- `/health` — deployment health check
+
+## Local preview
 
 ```bash
-npm install
-npm run dev
+python3 -m http.server 8080
 ```
 
-## Deployment
+Open `http://localhost:8080`.
 
-Production builds deploy to Vercel.
+## Railway
 
-```bash
-npm run build
-npm run preview
-```
+Create or connect a Railway service to this repository. Railway will detect the Dockerfile configuration and serve the application on port `8080`.
 
-## Games
+Custom domains:
 
-- **Fleet Battle** (2p): 4x4 grid
-- **Fleet Battle** (3p): 5x5 grid  
-- **Lil Dinghy Battle** (4-8p): 5x5 grid
-- **Large Fleet** (9-12p): 6x6 grid
+- `threadplay.co`
+- `www.threadplay.co`
 
-Trigger: `@battle_dinghy`
-
----
-
-Built with 🚢 by The Justin Fagan
+Contact: `justin@threadplay.co`
