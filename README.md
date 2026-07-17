@@ -1,40 +1,35 @@
-# ThreadPlay.co
+# ThreadPlay.co — Cinematic Timeline-Native Experience
 
-Public website for **ThreadPlay**, the first native timeline gaming ecosystem.
+The public ThreadPlay website is a dependency-free, single-page experience built for Railway/Nginx.
 
-ThreadPlay games are designed to be:
+## Experience architecture
 
-- **Passive** — play over minutes, hours, or days.
-- **Complementary** — add play to the timeline rather than pulling people away.
-- **Frictionless** — challenge with a mention and move with a reply.
+- Custom **WebGL2 fragment shader** backdrop with pointer and scroll uniforms
+- Progressive CSS scroll-driven animation enhancements
+- Sticky, scroll-controlled simulation chapters
+- Source-faithful **Battle Dinghy WinnerBot** move sweep (`A1` through `D4`)
+- Exact **57-move Battle Chess Arena** sequence from `battle_chess_4p_complete.yaml`
+- Dynamic 4×4 fleet board and 9×9 arena move map
+- Reduced-motion and no-WebGL fallbacks
+- No framework, external font, stock-image or runtime dependency
 
-## Ecosystem
+## Source provenance
 
-Battle Dinghy, Battle Chess Arena, ThreadChess, ThreadBookie, Baseball Stars, The Straits, Connect 4, Checkers, Chinese Checkers, and future partner-built timeline-native games.
+The simulation sequences are based on the connected private repository `thejustinfagan/threadplay-simulator`:
 
-## Visual language
+- `apps/bot_runner/strategies/game_bots/winner.py`
+- `scenarios/battle_dinghy/battle_chess_4p_complete.yaml`
 
-The public site uses an original ThreadPlay identity built around:
+The Battle Dinghy board is a deterministic visualization driven by the exact WinnerBot sweep sequence. The Battle Chess experience replays the exact actor/from/to transcript as a move map.
 
-- A monochrome **TP spool mark**
-- Flowing thread and strand dividers
-- Black, off-white, graphite, and one restrained electric-blue accent
-- Timeline-emulator compositions that keep the product experience central
-- Lightweight inline SVG and CSS rather than stock imagery or external design dependencies
+## Files
 
-The spool and strand system is inspired by the physical language of threads, connection, continuity, and public conversation. The existing ThreadPlay positioning and product copy remain the primary message.
-
-## Architecture
-
-The deployed Railway service is a dependency-free static website served by Nginx in a small Docker container.
-
-- `index.html` — complete public website and inline visual assets
-- `Dockerfile` — production container
-- `nginx.conf` — static hosting, SPA fallback, gzip, and health endpoint
+- `index.html` — semantic page structure
+- `styles.css` — visual system, responsive layout and scroll-driven enhancements
+- `app.js` — WebGL shader, replay engines and dynamic boards
+- `Dockerfile` — Nginx production image
+- `nginx.conf` — static hosting and `/health`
 - `railway.json` / `railway.toml` — Railway deployment configuration
-- `/health` — deployment health check
-
-The `app/` folder is an experimental Next.js scaffold and is not used by the current Dockerfile deployment.
 
 ## Local preview
 
@@ -43,14 +38,3 @@ python3 -m http.server 8080
 ```
 
 Open `http://localhost:8080`.
-
-## Railway
-
-Create or connect a Railway service to this repository. Railway will detect the Dockerfile configuration and serve the application on port `8080`.
-
-Custom domains:
-
-- `threadplay.co`
-- `www.threadplay.co`
-
-Contact: `justin@threadplay.co`
