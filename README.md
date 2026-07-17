@@ -2,50 +2,55 @@
 
 Public website for **ThreadPlay**, the native gaming layer for the public timeline.
 
-ThreadPlay games are designed to be:
+## Category position
 
-- **Passive** — a turn takes seconds while a game can unfold over minutes, hours, or days.
-- **Complementary** — the game adds stakes and spectatorship without replacing the timeline.
-- **Frictionless** — a mention starts the game, a reply advances it, and the arbiter manages state.
+ThreadPlay is designed around three product principles:
 
-## Experience
+- **Passive** — a turn takes seconds while a game can persist for minutes, hours, or days.
+- **Complementary** — play adds stakes and spectatorship without replacing the public timeline.
+- **Frictionless** — a mention begins the interaction, a reply advances it, and the arbiter preserves rules and state.
 
-The site is a dependency-free, cinematic single-page experience served by Nginx. It includes:
+## Current experience
 
-- A custom WebGL2 thread-field shader with static fallback
-- A scroll-controlled Battle Dinghy replay
-- A dynamic 4×4 Battle Dinghy board and public thread
-- A deterministic Battle Chess Arena demonstration
-- Five source-faithful ThreadPlay emulator captures
-- A complete ecosystem inventory and partnership invitation
-- Responsive layouts, keyboard focus treatment, semantic landmarks, and reduced-motion support
+The public site is an immersive, dependency-free single-page experience served by Nginx. It intentionally avoids the conventional white editorial landing-page treatment.
+
+The page includes:
+
+- A custom WebGL2 thread-field shader reacting to pointer position and document scroll
+- A dense full-viewport hero built from timeline captures, board state, a three-dimensional spool, and live telemetry
+- A visual input → arbiter → public-output interaction model
+- A sticky, scroll-controlled Battle Dinghy replay with no dead scroll area
+- A dynamic 4×4 fleet board, public thread, hit/miss telemetry, fleet damage, and final receipt
+- A source-faithful emulator capture archive
+- An interactive 9×9 four-player Battle Chess Arena demonstration
+- A connected ecosystem map for current games and partner-built experiences
+- Responsive desktop and mobile compositions
+- Reduced-motion, keyboard, semantic, and no-WebGL fallbacks
 
 ## Simulator provenance
 
 ### Battle Dinghy
 
-The scroll replay follows the current `WinnerBot` coordinate contract in `threadplay-simulator`:
+The replay follows the current `WinnerBot` move order from `thejustinfagan/threadplay-simulator`:
 
 `A1, A2, A3, A4, B1, B2, B3, B4, C1, C2, C3, C4, D1, D2, D3, D4`
 
-The board visualization is deterministic and clearly labeled as a simulator-driven replay.
+The page converts that real move contract into a deterministic public visualization. The exact private opponent fleet is not represented as a captured production game.
 
 ### Battle Chess Arena
 
-The arena uses the current scenario configuration:
+The browser demonstration reflects the current simulator scenario shape:
 
-- 4 players
+- Four players
 - 9×9 board
-- balanced deterministic bot policy
-- seed `20260617`
-- first collapse after 32 turns
-- subsequent collapse cadence based on active players
-
-The browser sequence was generated from the same policy shape and fixed seed for the public demonstration.
+- Balanced deterministic bot policy
+- Seed `20260617`
+- First ring collapse after turn 32
+- Later collapse cadence based on active players
 
 ### Capture archive
 
-The capture archive contains source-faithful local emulator renders for:
+The branch includes source-faithful emulator renders for:
 
 - Battle Dinghy
 - ThreadChess
@@ -53,31 +58,7 @@ The capture archive contains source-faithful local emulator renders for:
 - Baseball Stars
 - The Straits
 
-They use the simulator’s X-native composition, scenario contracts, board conventions, and fidelity labels. They are intentionally described as emulator renders, not live X screenshots.
-
-## Ecosystem represented
-
-Battle Dinghy, Battle Chess Arena, ThreadChess, ThreadBookie, Baseball Stars, The Straits, Connect 4, Checkers, Chinese Checkers, State Street Live, and future partner-built timeline-native experiences.
-
-## Files
-
-- `index.html` — page structure and content
-- `styles.css` — CSS module entry point
-- `css/*.css` — foundation, experience, ecosystem, motion, and responsive layers
-- `app.js` — JavaScript module entry point
-- `js/*.js` — shader, site behavior, Battle Dinghy replay, and Battle Chess demo
-- `assets/threadplay-mark.svg` — ThreadPlay identity
-- `assets/captures/*.svg` — self-contained emulator capture assets
-- `Dockerfile` — Railway/Nginx production image
-- `nginx.conf` — static hosting and health endpoint
-
-## Local preview
-
-```bash
-python3 -m http.server 8080
-```
-
-Open `http://localhost:8080`.
+They are explicitly presented as emulator-derived renders rather than live X screenshots.
 
 ## Deployment
 
