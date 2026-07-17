@@ -1,118 +1,181 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#050608" />
-  <meta name="description" content="ThreadPlay is the native gaming layer for the public timeline: passive, complementary and frictionless." />
-  <meta property="og:title" content="ThreadPlay — The timeline becomes the game" />
-  <meta property="og:description" content="Scroll through source-faithful Battle Dinghy and Battle Chess Arena simulations." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://threadplay.co" />
-  <meta property="og:image" content="https://threadplay.co/assets/threadplay-og.svg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="/assets/threadplay-mark.svg" type="image/svg+xml" />
-  <title>ThreadPlay — The timeline becomes the game</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070809">
+  <meta name="description" content="ThreadPlay is the native gaming layer for the public timeline: passive, complementary and frictionless.">
+  <meta property="og:title" content="ThreadPlay — Play lives in the thread">
+  <meta property="og:description" content="Games that start, play and resolve in the public timeline.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://threadplay.co">
+  <meta property="og:image" content="https://threadplay.co/assets/threadplay-og.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/threadplay-mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/threadplay-mark.svg">
+  <title>ThreadPlay — Play lives in the thread</title>
+  <link rel="stylesheet" href="/styles.css">
   <script type="module" src="/app.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to experience</a>
+  <a class="skip" href="#main">Skip to main content</a>
   <canvas id="shader" aria-hidden="true"></canvas>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><i></i></div>
 
-  <header class="site-header">
+  <header class="nav-shell">
     <a class="brand" href="#top" aria-label="ThreadPlay home">
-      <svg class="brand-spool" viewBox="0 0 72 84" aria-hidden="true"><defs><linearGradient id="spool-g" x1="0" x2="1"><stop stop-color="#050608"/><stop offset=".45" stop-color="#34373c"/><stop offset="1" stop-color="#07080a"/></linearGradient></defs><ellipse cx="36" cy="11" rx="29" ry="8" fill="#08090b"/><rect x="14" y="10" width="44" height="63" rx="12" fill="url(#spool-g)"/><ellipse cx="36" cy="73" rx="31" ry="9" fill="#050608"/><path d="M23 31h19M32 31v28M32 36h12c8 0 12 4 12 11s-4 11-12 11H32" fill="none" stroke="#f5f7f8" stroke-width="6"/></svg>
+      <img src="/assets/threadplay-mark.svg" alt="">
       <span>ThreadPlay</span>
     </a>
-    <nav aria-label="Primary"><a href="#manifesto">Why</a><a href="#battle-dinghy">Battle Dinghy</a><a href="#battle-chess">Battle Chess</a><a href="#ecosystem">Ecosystem</a></nav>
-    <a class="header-cta" href="mailto:justin@threadplay.co?subject=Build%20with%20ThreadPlay">Build with us</a>
+    <nav aria-label="Primary navigation">
+      <a href="#why">Why</a>
+      <a href="#dinghy">Battle Dinghy</a>
+      <a href="#captures">Simulator</a>
+      <a href="#arena">Battle Chess</a>
+      <a href="#ecosystem">Ecosystem</a>
+    </nav>
+    <a class="nav-cta" href="mailto:justin@threadplay.co?subject=Build%20with%20ThreadPlay">Build with us</a>
   </header>
 
   <main id="main">
-    <section id="top" class="hero section-shell">
-      <div class="hero-copy">
-        <p class="kicker"><span>01</span> The native gaming layer for the public timeline</p>
-        <h1>The timeline<br /><em>becomes</em><br />the game.</h1>
-        <p class="hero-deck">Challenge in a post. Move in a reply. Leave. Return hours later. The arbiter keeps the world alive while the timeline keeps moving.</p>
-        <div class="hero-actions"><a class="button primary" href="#battle-dinghy">Enter a live replay</a><a class="button ghost" href="#ecosystem">Explore the system</a></div>
-        <div class="hero-principles"><span>Passive</span><span>Complementary</span><span>Frictionless</span></div>
-      </div>
-      <div class="hero-stage" aria-label="ThreadPlay native timeline visualization">
-        <div class="orbital-label label-a">PUBLIC THREAD</div><div class="orbital-label label-b">STATEFUL ARBITER</div><div class="orbital-label label-c">ASYNC PLAY</div>
-        <div class="spool-3d" aria-hidden="true"><div class="spool-cap top"></div><div class="spool-core"><span>TP</span></div><div class="spool-cap bottom"></div></div>
-        <div class="thread-ribbon ribbon-one"></div><div class="thread-ribbon ribbon-two"></div>
-        <div class="timeline-card hero-thread-card">
-          <div class="timeline-top"><span>←</span><b>Post</b><small>LIVE THREAD</small></div>
-          <article class="x-post player"><div class="avatar">JF</div><div><header><b>Justin Fagan</b><span>@thejustinfagan · now</span></header><p>Hey <mark>@chief_of_yolo</mark>, I challenge you to <mark>@battle_dinghy</mark>.</p></div></article>
-          <article class="x-post bot"><div class="avatar">BD</div><div><header><b>Battle Dinghy</b><span>@battle_dinghy · now</span></header><small>Replying to <mark>@thejustinfagan</mark></small><p>Game #418 has begun. Fire a coordinate whenever you are ready. The thread will wait.</p><div class="mini-board" id="hero-mini-board"></div></div></article>
+    <section id="top" class="hero shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span>01</span> The native gaming layer for the public timeline</p>
+        <h1>Play lives<br>in the <em>thread.</em></h1>
+        <p class="lede">Challenge in a post. Move in a reply. Leave. Return later. The arbiter keeps the world alive while the timeline keeps moving.</p>
+        <div class="actions">
+          <a class="button primary" href="#dinghy">Play the scroll</a>
+          <a class="button secondary" href="#captures">See the emulator</a>
+        </div>
+        <div class="principle-strip" aria-label="ThreadPlay principles">
+          <span>Passive</span><span>Complementary</span><span>Frictionless</span>
         </div>
       </div>
-    </section>
 
-    <section id="manifesto" class="manifesto section-shell">
-      <div class="manifesto-heading"><p class="kicker"><span>02</span> Not another destination</p><h2>Play should not demand that you stop doing everything else.</h2></div>
-      <div class="manifesto-grid">
-        <article><span>01</span><h3>Passive</h3><p>A meaningful turn takes seconds. A complete game can unfold over minutes, hours or days without becoming a second job.</p></article>
-        <article><span>02</span><h3>Complementary</h3><p>ThreadPlay adds stakes, humor and spectatorship to the timeline instead of pulling people into a separate lobby.</p></article>
-        <article><span>03</span><h3>Frictionless</h3><p>The public post is the interface. The bot manages rules, state, reminders, receipts and resolution.</p></article>
+      <div class="hero-stage reveal" aria-label="ThreadPlay simulator captures">
+        <div class="thread-orbit orbit-a"></div>
+        <div class="thread-orbit orbit-b"></div>
+        <figure class="capture capture-back">
+          <img src="/assets/captures/threadchess.svg" alt="ThreadChess game rendered in the ThreadPlay simulator">
+        </figure>
+        <figure class="capture capture-front">
+          <img src="/assets/captures/battle-dinghy.svg" alt="Battle Dinghy game rendered in the ThreadPlay simulator">
+        </figure>
+        <div class="signal-card"><small>LIVE INTERACTION MODEL</small><b>The post is the lobby.<br>The reply is the controller.</b></div>
       </div>
-      <div class="statement-marquee" aria-hidden="true"><span>CHALLENGE · MOVE · LEAVE · RETURN · WATCH · REPLY · RESOLVE · </span></div>
     </section>
 
-    <section id="battle-dinghy" class="replay replay-dinghy" data-replay="dinghy">
-      <div class="replay-sticky">
+    <section id="why" class="why dark-section">
+      <div class="shell why-grid">
+        <div class="why-intro reveal">
+          <p class="eyebrow light"><span>02</span> Not another place to play</p>
+          <h2>Gaming that does not ask you to leave the thing you were already doing.</h2>
+        </div>
+        <div class="why-list">
+          <article class="reveal"><span>01</span><h3>Passive</h3><p>A turn takes seconds. A game can unfold over minutes, hours or days without becoming another attention trap.</p></article>
+          <article class="reveal"><span>02</span><h3>Complementary</h3><p>The game adds stakes, humor and spectatorship to the timeline rather than replacing the timeline.</p></article>
+          <article class="reveal"><span>03</span><h3>Frictionless</h3><p>A mention starts the loop. A reply advances it. The arbiter owns rules, state, reminders and receipts.</p></article>
+        </div>
+      </div>
+      <div class="ticker" aria-hidden="true"><span>CHALLENGE · MOVE · LEAVE · RETURN · WATCH · REPLY · RESOLVE · </span></div>
+    </section>
+
+    <section id="dinghy" class="replay replay-dinghy" data-replay="dinghy">
+      <div class="replay-sticky shell">
         <div class="replay-copy">
-          <p class="kicker"><span>03</span> Source-faithful simulator replay</p>
-          <h2>Scroll an entire<br />Battle Dinghy<br />attack run.</h2>
-          <p>Driven by the emulator’s real WinnerBot sweep sequence: <code>A1 → D4</code>. The timeline advances, the board mutates and the public receipt stays visible.</p>
-          <div class="source-chip"><i></i> ThreadPlay Simulator · live BD path</div>
-          <div class="move-meter"><span id="dinghy-move-label">MOVE 01 / 16</span><div><i id="dinghy-meter-fill"></i></div></div>
+          <p class="eyebrow"><span>03</span> A game you scroll through</p>
+          <h2>An entire Battle Dinghy attack run.</h2>
+          <p>The interaction is driven by the simulator’s real WinnerBot sweep sequence: <code>A1</code> through <code>D4</code>. Scroll to advance the public thread and mutate the board.</p>
+          <div class="source-badge"><i></i><span>ThreadPlay Simulator · WinnerBot source</span></div>
+          <div class="meter"><div><span id="dinghy-step">Move 01 / 16</span><b id="dinghy-coord">A1</b></div><em><i id="dinghy-fill"></i></em></div>
         </div>
-        <div class="replay-device"><div class="device-glow"></div><div class="timeline-card replay-thread" id="dinghy-thread"><div class="timeline-top"><span>←</span><b>Battle Dinghy</b><small id="dinghy-status-top">GAME LIVE</small></div><div class="thread-feed" id="dinghy-feed" aria-live="polite"></div></div></div>
-        <div class="board-panel dinghy-panel"><div class="board-panel-head"><div><small>OPPONENT FLEET</small><b id="dinghy-coordinate">A1</b></div><div class="radar-dot"></div></div><div id="dinghy-board" class="dinghy-board" role="img" aria-label="Dynamic Battle Dinghy board"></div><div class="fleet-track" id="fleet-track"></div><div class="board-foot"><span id="dinghy-result">Scanning coordinate A1</span><span>4×4 · FLEET BATTLE</span></div></div>
-      </div>
-      <div class="replay-steps" id="dinghy-steps" aria-hidden="true"></div>
-    </section>
 
-    <section class="bridge section-shell">
-      <div><p class="kicker"><span>04</span> The real innovation</p><h2>The game is not embedded in the timeline.<br /><em>The timeline is the game engine.</em></h2></div>
-      <div class="bridge-diagram"><div><span>01</span><b>PUBLIC INPUT</b><small>mentions + replies</small></div><i></i><div><span>02</span><b>ARBITER</b><small>state + rules + truth</small></div><i></i><div><span>03</span><b>PUBLIC OUTPUT</b><small>boards + receipts</small></div></div>
-    </section>
-
-    <section id="battle-chess" class="replay replay-chess" data-replay="chess">
-      <div class="replay-sticky">
-        <div class="replay-copy chess-copy">
-          <p class="kicker"><span>05</span> Four players. One collapsing arena.</p>
-          <h2>Battle Chess<br />as a cinematic<br />move map.</h2>
-          <p>This sequence is pulled from the simulator’s complete 57-move Battle Chess Arena scenario. Scroll to drive the exact actor and coordinate transcript.</p>
-          <div class="source-chip"><i></i> battle_chess_4p_complete.yaml · exact sequence</div>
-          <div class="player-legend"><span class="p1">Thread Play</span><span class="p2">Bot Bob</span><span class="p3">Bot Charlie</span><span class="p4">Bot Dave</span></div>
+        <div class="phone-frame">
+          <div class="x-header"><span>←</span><div><b>Post</b><small>Battle Dinghy · live sim path</small></div></div>
+          <div id="dinghy-thread" class="thread-feed" aria-live="polite"></div>
         </div>
-        <div class="chess-arena-wrap"><canvas id="chess-particles" aria-hidden="true"></canvas><div class="chess-arena" id="chess-board" role="img" aria-label="Dynamic 9 by 9 Battle Chess Arena board"></div><div class="collapse-ring ring-one"></div><div class="collapse-ring ring-two"></div><div class="move-beam" id="move-beam"></div><div class="chess-hud"><span id="chess-turn">TURN 01 / 57</span><b id="chess-move">C1 → A3</b><small id="chess-player">@thread_play</small></div></div>
-        <div class="chess-thread-card timeline-card"><div class="timeline-top"><span>←</span><b>Battle Chess Arena</b><small>4 PLAYERS</small></div><div class="thread-feed" id="chess-feed"></div></div>
+
+        <div class="board-shell">
+          <header><div><small>OPPONENT FLEET</small><b id="board-result">Scanning A1</b></div><div class="radar"></div></header>
+          <div id="dinghy-board" class="dinghy-board" role="img" aria-label="Dynamic four by four Battle Dinghy board"></div>
+          <div id="fleet-status" class="fleet-status"></div>
+          <footer><span>GAME #418</span><span>4×4 GRID</span></footer>
+        </div>
       </div>
-      <div class="replay-steps chess-steps" id="chess-steps" aria-hidden="true"></div>
+      <div id="dinghy-spacer" class="replay-spacer" aria-hidden="true"></div>
     </section>
 
-    <section id="ecosystem" class="ecosystem section-shell">
-      <div class="ecosystem-intro"><p class="kicker"><span>06</span> One protocol, many worlds</p><h2>A timeline arcade that can keep expanding.</h2><p>ThreadPlay is the system above the games: public inputs, deterministic state, visible outcomes, simulation infrastructure and partner-built experiences.</p></div>
-      <div class="ecosystem-grid">
-        <article class="feature-game"><span>01</span><h3>Battle Dinghy</h3><p>Fleet combat for two to twelve players, played through public coordinates and visual boards.</p><small>LIVE ECOSYSTEM</small></article>
-        <article><span>02</span><h3>Battle Chess Arena</h3><p>Four-player chess on a shrinking 9×9 board.</p></article><article><span>03</span><h3>ThreadChess</h3><p>Standard and Chess960 games rendered as public threads.</p></article><article><span>04</span><h3>ThreadBookie</h3><p>Public wager records, confirmations, receipts and disputes.</p></article><article><span>05</span><h3>Baseball Stars</h3><p>Provably fair at-bat duels with public plans and outcomes.</p></article><article><span>06</span><h3>The Straits</h3><p>Naval battles at history’s most consequential chokepoints.</p></article><article><span>07</span><h3>Connect 4</h3><p>Fast reply-native tactical duels.</p></article><article><span>08</span><h3>Checkers</h3><p>A familiar ruleset translated into public turns.</p></article><article><span>09</span><h3>Chinese Checkers</h3><p>Two, three, four or six players across a shared star board.</p></article>
+    <section id="captures" class="capture-archive shell">
+      <div class="archive-head reveal">
+        <p class="eyebrow"><span>04</span> Product proof, not concept art</p>
+        <h2>Source-faithful captures from the ThreadPlay emulator.</h2>
+        <p>These renders use the emulator’s X-native thread composition, board conventions and scenario contracts. They show how different game systems become legible public content.</p>
+      </div>
+      <div class="archive-grid">
+        <figure class="archive-feature reveal"><img src="/assets/captures/battle-dinghy.svg" alt="Battle Dinghy emulator timeline"><figcaption><div><small>01 · Fleet combat</small><b>Battle Dinghy</b></div><span>2–12 players</span></figcaption></figure>
+        <figure class="reveal"><img src="/assets/captures/threadchess.svg" alt="ThreadChess emulator timeline"><figcaption><div><small>02 · Board-image chess</small><b>ThreadChess</b></div><span>Exact board media</span></figcaption></figure>
+        <figure class="reveal"><img src="/assets/captures/threadbookie.svg" alt="ThreadBookie emulator timeline"><figcaption><div><small>03 · Public receipts</small><b>ThreadBookie</b></div><span>Terms + confirmations</span></figcaption></figure>
+        <figure class="reveal"><img src="/assets/captures/baseball-stars.svg" alt="Baseball Stars emulator timeline"><figcaption><div><small>04 · Deterministic duel</small><b>Baseball Stars</b></div><span>Plans + receipt</span></figcaption></figure>
+        <figure class="reveal"><img src="/assets/captures/the-straits.svg" alt="The Straits emulator timeline"><figcaption><div><small>05 · Multiplayer naval world</small><b>The Straits</b></div><span>Runtime probe</span></figcaption></figure>
+      </div>
+      <p class="capture-note">Capture provenance: source-faithful local emulator renders, not live X screenshots.</p>
+    </section>
+
+    <section class="mechanism dark-section">
+      <div class="shell mechanism-grid">
+        <div class="reveal"><p class="eyebrow light"><span>05</span> The interaction primitive</p><h2>The game is not embedded in the timeline.<br><em>The timeline is the game engine.</em></h2></div>
+        <div class="flow reveal" aria-label="ThreadPlay interaction flow">
+          <article><span>01</span><b>Public input</b><small>mentions + replies</small></article><i></i>
+          <article><span>02</span><b>Arbiter</b><small>rules + state + truth</small></article><i></i>
+          <article><span>03</span><b>Public output</b><small>boards + receipts</small></article>
+        </div>
       </div>
     </section>
 
-    <section class="partnership section-shell">
-      <div class="partnership-spool" aria-hidden="true"><div></div><span>TP</span><div></div></div>
-      <div><p class="kicker"><span>07</span> Open protocol, open invitation</p><h2>Build the next native timeline experience with us.</h2></div>
-      <div><p>Game studios, creators, communities, brands, platforms and developers can use ThreadPlay’s public-interaction model and simulation layer to create entirely new forms of social play.</p><a class="button light" href="mailto:justin@threadplay.co?subject=ThreadPlay%20partnership">Start a partnership</a></div>
+    <section id="arena" class="arena-section shell">
+      <div class="arena-copy reveal">
+        <p class="eyebrow"><span>06</span> Battle Chess Arena</p>
+        <h2>Four players.<br>One collapsing board.</h2>
+        <p>The current simulator scenario uses a deterministic balanced bot policy, a 9×9 arena, a fixed seed and a first collapse at turn 32. The board below runs that same rules model as an interactive demonstration.</p>
+        <div class="arena-meta"><span>9×9</span><span>4 players</span><span>seed 20260617</span><span>collapse at 32</span></div>
+        <button id="arena-play" class="button primary" type="button">Run arena demo</button>
+      </div>
+      <div class="arena-stage reveal">
+        <canvas id="arena-canvas" width="900" height="900" aria-label="Animated Battle Chess Arena demonstration"></canvas>
+        <div class="arena-hud"><span id="arena-turn">Turn 01</span><b id="arena-move">C1 → A3</b><small id="arena-actor">@thread_play</small></div>
+      </div>
+    </section>
+
+    <section id="ecosystem" class="ecosystem shell">
+      <div class="ecosystem-intro reveal">
+        <p class="eyebrow"><span>07</span> One protocol, many worlds</p>
+        <h2>A timeline arcade that can keep expanding.</h2>
+        <p>ThreadPlay is the layer above the games: public inputs, durable state, visible outcomes, simulation infrastructure and partner-built experiences.</p>
+      </div>
+      <div class="ecosystem-list">
+        <article class="featured reveal"><span>01</span><div><h3>Battle Dinghy</h3><small>@battle_dinghy</small></div><p>Fleet combat translated into public coordinates and dynamic board media.</p><b>Live ecosystem</b></article>
+        <article class="reveal"><span>02</span><div><h3>Battle Chess Arena</h3><small>#battlechess</small></div><p>Four-player combat on a shrinking 9×9 board.</p><b>Live sim</b></article>
+        <article class="reveal"><span>03</span><div><h3>ThreadChess</h3><small>@threadchess</small></div><p>Standard and Chess960 positions rendered as public threads.</p><b>Native</b></article>
+        <article class="reveal"><span>04</span><div><h3>ThreadBookie</h3><small>@threadbookie</small></div><p>Terms, confirmations, receipts and dispute records.</p><b>Companion layer</b></article>
+        <article class="reveal"><span>05</span><div><h3>Baseball Stars</h3><small>@baseballstars</small></div><p>Provably fair at-bat duels with public plans and outcomes.</p><b>Pre-public</b></article>
+        <article class="reveal"><span>06</span><div><h3>The Straits</h3><small>@the_straits</small></div><p>Multiplayer naval battles at strategic chokepoints.</p><b>Runtime probe</b></article>
+        <article class="reveal"><span>07</span><div><h3>Connect 4</h3><small>reply-native</small></div><p>Fast tactical duels using simple public commands.</p><b>Route</b></article>
+        <article class="reveal"><span>08</span><div><h3>Checkers</h3><small>reply-native</small></div><p>A familiar ruleset translated into asynchronous turns.</p><b>Route</b></article>
+        <article class="reveal"><span>09</span><div><h3>Chinese Checkers</h3><small>2–6 players</small></div><p>Shared-board multiplayer across a public star.</p><b>Full-game sim</b></article>
+        <article class="reveal"><span>10</span><div><h3>State Street Live</h3><small>timeline property game</small></div><p>A public economic game with auctions, ownership and final receipts.</p><b>Bridge live</b></article>
+      </div>
+    </section>
+
+    <section class="partner dark-section">
+      <div class="shell partner-grid">
+        <div class="partner-mark reveal"><img src="/assets/threadplay-mark.svg" alt=""></div>
+        <div class="reveal"><p class="eyebrow light"><span>08</span> Open development surface</p><h2>Build the next native timeline experience with us.</h2></div>
+        <div class="reveal"><p>Game studios, creators, communities, brands, platforms and developers can adapt ThreadPlay’s public-interaction model to entirely new forms of social play.</p><div class="partner-actions"><a class="button light" href="mailto:justin@threadplay.co?subject=ThreadPlay%20partnership">Start a partnership</a><a class="text-link" href="https://github.com/thejustinfagan/threadplay-simulator">Explore the simulator ↗</a></div></div>
+      </div>
     </section>
   </main>
 
-  <footer><a class="brand" href="#top"><img src="/assets/threadplay-mark.svg" class="brand-spool" alt=""/><span>ThreadPlay</span></a><span>© 2026 · A Back Forty Works ecosystem</span><span>Passive · Complementary · Frictionless</span></footer>
-  <noscript><div class="noscript">ThreadPlay’s interactive replays require JavaScript. The core site remains readable without it.</div></noscript>
+  <footer class="site-footer shell"><a class="brand" href="#top"><img src="/assets/threadplay-mark.svg" alt=""><span>ThreadPlay</span></a><span>© 2026 · A Back Forty Works ecosystem</span><span>Passive · Complementary · Frictionless</span></footer>
 </body>
 </html>
