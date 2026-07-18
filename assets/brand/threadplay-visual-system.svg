@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">ThreadPlay black thread and spool visual system</title>
+<desc id="desc">Black strands with restrained electric blue signals weave around the ThreadPlay spool.</desc>
+<defs>
+  <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#f0f1ee"/></linearGradient>
+  <linearGradient id="spool" x1="0" x2="1"><stop stop-color="#050607"/><stop offset=".45" stop-color="#25282c"/><stop offset="1" stop-color="#070809"/></linearGradient>
+  <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2a2d31"/><stop offset=".6" stop-color="#060708"/><stop offset="1" stop-color="#181a1d"/></linearGradient>
+  <linearGradient id="blue" x1="0" x2="1"><stop stop-color="#168cff" stop-opacity="0"/><stop offset=".4" stop-color="#168cff"/><stop offset=".7" stop-color="#62e7ff"/><stop offset="1" stop-color="#168cff" stop-opacity="0"/></linearGradient>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="28" stdDeviation="22" flood-color="#000" flood-opacity=".26"/></filter>
+  <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <clipPath id="bodyClip"><rect x="1110" y="245" width="235" height="390" rx="56"/></clipPath>
+</defs>
+<rect x="12" y="12" width="1576" height="876" rx="36" fill="url(#paper)" stroke="#d8dad6"/>
+<g fill="none" stroke-linecap="round" filter="url(#shadow)">
+  <path d="M-100 575C220 310 465 720 805 472S1260 280 1700 455" stroke="#08090a" stroke-width="104"/>
+  <path d="M-80 510C230 250 480 660 820 414S1270 230 1680 405" stroke="#25272a" stroke-width="32"/>
+  <path d="M-95 640C260 380 500 760 850 520S1320 355 1710 515" stroke="#44474b" stroke-width="10" opacity=".72"/>
+  <path d="M-60 285C250 70 475 455 770 220S1220 60 1680 250" stroke="#101113" stroke-width="28"/>
+  <path d="M-50 238C260 32 475 390 790 170S1240 12 1680 205" stroke="#33363a" stroke-width="9"/>
+  <path d="M-90 712C250 455 525 810 915 592S1375 432 1710 575" stroke="url(#blue)" stroke-width="8" filter="url(#glow)"/>
+  <path d="M455 430C710 315 830 610 1110 468S1370 330 1580 405" stroke="url(#blue)" stroke-width="4" filter="url(#glow)" opacity=".9"/>
+</g>
+<g transform="translate(0 -5)" filter="url(#shadow)">
+  <rect x="1110" y="245" width="235" height="390" rx="56" fill="url(#spool)"/>
+  <g clip-path="url(#bodyClip)" fill="none" stroke-linecap="round">
+    <path d="M1035 320C1155 415 1240 245 1435 445" stroke="#5b5e63" stroke-width="12" opacity=".28"/>
+    <path d="M1010 395C1160 515 1255 300 1450 530" stroke="#151719" stroke-width="23" opacity=".8"/>
+    <path d="M1020 465C1185 560 1260 390 1430 585" stroke="url(#blue)" stroke-width="8" filter="url(#glow)"/>
+    <path d="M1060 520C1185 600 1270 455 1410 610" stroke="#3c3f43" stroke-width="10" opacity=".35"/>
+  </g>
+  <ellipse cx="1227.5" cy="248" rx="158" ry="43" fill="#070809"/>
+  <rect x="1055" y="210" width="345" height="69" rx="30" fill="url(#cap)"/>
+  <ellipse cx="1227.5" cy="637" rx="165" ry="48" fill="#070809"/>
+  <rect x="1048" y="607" width="360" height="66" rx="28" fill="url(#cap)"/>
+  <path d="M1143 350h126M1210 350v176M1210 378h75c55 0 82 25 82 69 0 45-27 72-82 72h-75" fill="none" stroke="#fff" stroke-width="31" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M1085 283C1170 330 1260 250 1390 330" fill="none" stroke="url(#blue)" stroke-width="5" filter="url(#glow)"/>
+</g>
+<g fill="#168cff"><circle cx="895" cy="576" r="4"/><circle cx="934" cy="555" r="3"/><circle cx="980" cy="538" r="2.5"/></g>
+</svg>
